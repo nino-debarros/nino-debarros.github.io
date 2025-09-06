@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Select Reality Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #8B5CF6;
+            --accent: #3B82F6;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --gray: #CBD5E1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7ff 0%, #e9efff 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+        
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: #475569;
+        }
+        
+        .value-propositions {
+            margin-top: 40px;
+        }
+        
+        .value-propositions h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+        
+        .value-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .value-text p {
+            color: #475569;
+            margin: 0;
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+        
+        .experience-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .experience-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 40px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: -9px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .timeline-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .timeline-item .date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .timeline-item p {
+            color: #475569;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            padding: 60px 0;
+        }
+        
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .skill-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: calc(25% - 20px);
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .skill-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-column p, .footer-column li {
+            margin-bottom: 10px;
+            color: #CBD5E1;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column a {
+            color: #CBD5E1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .skill-item {
+                width: calc(50% - 20px);
+            }
+            
+            .nav-menu {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/04335b68-2d15-4f4f-8c1a-6f57efd2af79_SRD_Logo.png?auth_key=1788292825-ab9e206834fd43329c9b38e43e880600-0-a0960934046443b836776e29308dffe8" alt="SRD Logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h1 class="section-title">Core Team</h1>
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="SRD_Me.jpeg" alt="Nino DeBarros">
+                </div>
+                <div class="about-content">
+                    <h2>Nino DeBarros - Founding Designer</h2>
+                    <p>Mission-driven with a passion for spatial computing, Nino DeBarros brings a unique blend of technical expertise and business acumen to Select Reality Development. With a background in product development, sales management, AR/VR development, GIS, and AI training, Nino has demonstrated an ability to drive significant business results while creating innovative solutions.</p>
+                    <p>Nino's approach is centered on building scalable, socially impactful products with meta-awareness, focusing on quality outcomes through continuous iteration and improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Propositions Section -->
+    <section class="value-propositions">
+        <div class="container">
+            <h3>Key Value Offerings</h3>
+            
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="value-text">
+                    <h4>Revenue Growth Expertise</h4>
+                    <p>Proven ability to drive $1M+ in B2B revenue through strategic outbound alignment and optimized lead generation.</p>
+                </div>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="value-text">
+                    <h4>AR/VR Development Proficiency</h4>
+                    <p>Expertise in Unity, AR SDKs (Vuforia, ARCore), and spatial computing technologies for creating immersive experiences.</p>
+                </div>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="value-text">
+                    <h4>Geospatial Technology Skills</h4>
+                    <p>Proficiency in ArcGIS Pro, QGIS, and spatial data analysis for location-based XR applications.</p>
+                </div>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="value-text">
+                    <h4>AI Training Experience</h4>
+                    <p>Background in AI training with focus on safety and harmlessness, including RLHF to refine machine learning models.</p>
+                </div>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="value-text">
+                    <h4>Leadership & Team Management</h4>
+                    <p>Experience in mentoring teams and managing district territories with a focus on exceeding KPIs and quotas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h2 class="experience-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>ASRC Federal Remote</h4>
+                    <div class="date">2025 - Present</div>
+                    <p>GIS Technician I - Reviewing and editing spatial geospatial data layers in ESRI ArcGIS Pro, including street centerlines, hydrography, and territorial boundaries. Collaborating with municipal planning departments nationwide to validate survey submissions.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Russell Cellular: Verizon Authorized Retailer</h4>
+                    <div class="date">2020 - 2021, 2024 - 2025</div>
+                    <p>Wireless Sales Representative/Sales Manager - Drove $1M+ in B2B revenue by aligning outbound strategy with buying cycles and optimizing inbound lead generation. Promoted to sales manager within 6 months; supported 4 district territories and mentored 35+ staff.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>DataAnnotation</h4>
+                    <div class="date">2023 - 2024</div>
+                    <p>AI Trainer - Utilized Reinforcement Learning from Human Feedback (RLHF) to refine machine learning models, including GPT-4 and Meta LLaMA. Shaped model outputs to adhere to ethical and legal standards (safety, truthfulness, harmlessness).</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Maxar Technologies</h4>
+                    <div class="date">2022 - 2023</div>
+                    <p>Product Development Intern - Documented 3 critical bugs in Jira, implemented 100+ technical documentation edits, and quality-checked 1,000+ imagery files. Designed and presented AR/VR prototypes and ArcGIS Field Maps integrations; presented 15+ feature proposals and 5 new use cases based on user personas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="skills-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>Data</h4>
+                    <p>ArcGIS Pro, QGIS, SQL, Python, Excel, Dashboards</p>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h4>Design/Development</h4>
+                    <p>Figma, Adobe Creative Cloud, Blender, Java, Unity (C#), AR SDKs</p>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Strategy</h4>
+                    <p>Market Research, Competitive Analysis, Feature Prioritization, UX Research</p>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Education</h4>
+                    <p>B.S in Geography - Applied Information Systems, Minor: Computer Science</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Select Reality Development</h4>
+                    <p>Transformative AR/VR/metaverse solutions through strategic research, design, and product management.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@selectrealitydev.com">info@selectrealitydev.com</a></li>
+                        <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/selectreality/" target="_blank">linkedin.com/company/selectreality</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> HQ: Washington, DC</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright 2025 Select Reality Development LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

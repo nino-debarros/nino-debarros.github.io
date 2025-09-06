@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies - Select Reality Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #8B5CF6;
+            --accent: #3B82F6;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --gray: #CBD5E1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7ff 0%, #e9efff 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+        
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23d1d5db" opacity="0.3"/></svg>');
+            background-size: 100px 100px;
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #475569;
+        }
+        
+        /* Case Studies Section */
+        .case-studies-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .case-study-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-study-card:hover .case-study-image img {
+            transform: scale(1.05);
+        }
+        
+        .case-study-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-study-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .case-study-content .industry {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .case-study-content p {
+            color: #475569;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .case-study-results {
+            background: rgba(79, 70, 229, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: auto;
+        }
+        
+        .case-study-results h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .results-metrics {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 0.85rem;
+            color: #475569;
+        }
+        
+        .case-study-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 15px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .case-study-link:hover {
+            margin-left: 5px;
+        }
+        
+        .case-study-link i {
+            margin-left: 5px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(139, 92, 246, 0.05));
+            border-radius: 20px;
+            margin: 60px auto;
+            max-width: 1000px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #475569;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 18px 32px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-column p, .footer-column li {
+            margin-bottom: 10px;
+            color: #CBD5E1;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column a {
+            color: #CBD5E1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/04335b68-2d15-4f4f-8c1a-6f57efd2af79_SRD_Logo.png?auth_key=1788292825-ab9e206834fd43329c9b38e43e880600-0-a0960934046443b836776e29308dffe8" alt="SRD Logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="case-studies.html" class="active">Case Studies</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our Success Stories</h1>
+            <p>Discover how Select Reality Development has helped companies transform their spatial computing visions into reality.</p>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies-section">
+        <div class="container">
+            <h2 class="section-title">Featured Case Studies</h2>
+            <div class="case-studies-grid">
+                <!-- Case Study 1 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/4F46E5/FFFFFF?text=Enterprise+AR+Platform" alt="Enterprise AR Platform">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Enterprise AR Platform</h3>
+                        <span class="industry">Manufacturing & Industrial</span>
+                        <p>Development of an augmented reality platform for industrial training and maintenance, enabling workers to access digital overlays of machinery and real-time data in their field of view.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">60%</div>
+                                    <div class="metric-label">Faster Development</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">40%</div>
+                                    <div class="metric-label">Cost Reduction</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">3x</div>
+                                    <div class="metric-label">User Adoption</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=VR+Gaming+Startup" alt="VR Gaming Startup">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>VR Gaming Startup</h3>
+                        <span class="industry">Gaming & Entertainment</span>
+                        <p>Complete product strategy and design for a virtual reality gaming startup, including market validation, MVP scoping, and growth strategy to attract investors and early adopters.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">$2M+</div>
+                                    <div class="metric-label">Funding Secured</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">50K+</div>
+                                    <div class="metric-label">Active Users</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">4.8</div>
+                                    <div class="metric-label">App Store Rating</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 3 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Retail+AR+Experience" alt="Retail AR Experience">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Retail AR Experience</h3>
+                        <span class="industry">Retail & E-commerce</span>
+                        <p>Creation of an augmented reality shopping experience that allows customers to visualize products in their own space before purchasing, reducing return rates and increasing conversion.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">35%</div>
+                                    <div class="metric-label">Conversion Increase</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">28%</div>
+                                    <div class="metric-label">Return Reduction</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">4.6</div>
+                                    <div class="metric-label">User Satisfaction</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 4 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/6366F1/FFFFFF?text=Smart+City+Planning" alt="Smart City Planning">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Smart City Planning</h3>
+                        <span class="industry">Government & Urban Planning</span>
+                        <p>Development of a spatial intelligence platform for city planners to visualize urban data in 3D, enabling better decision-making for infrastructure projects and urban development.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">45%</div>
+                                    <div class="metric-label">Faster Approval</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">30%</div>
+                                    <div class="metric-label">Cost Savings</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">90%</div>
+                                    <div class="metric-label">Stakeholder Approval</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 5 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Healthcare+VR+Training" alt="Healthcare VR Training">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Healthcare VR Training</h3>
+                        <span class="industry">Healthcare & Medical</span>
+                        <p>Design and implementation of a virtual reality training system for medical professionals, providing realistic simulations of surgical procedures and emergency scenarios.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">70%</div>
+                                    <div class="metric-label">Skill Improvement</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">50%</div>
+                                    <div class="metric-label">Training Time Reduction</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">95%</div>
+                                    <div class="metric-label">Confidence Increase</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 6 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400/4F46E5/FFFFFF?text=Education+VR+Platform" alt="Education VR Platform">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Education VR Platform</h3>
+                        <span class="industry">Education & Learning</span>
+                        <p>Creation of an immersive virtual reality learning platform for K-12 education, bringing complex subjects to life through interactive 3D experiences and virtual field trips.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results</h4>
+                            <div class="results-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">85%</div>
+                                    <div class="metric-label">Engagement Increase</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">40%</div>
+                                    <div class="metric-label">Retention Improvement</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">100+</div>
+                                    <div class="metric-label">Schools Adopted</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-study-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Create Your Success Story?</h2>
+            <p>Partner with Select Reality Development to transform your spatial computing vision into reality.</p>
+            <button class="cta-button" onclick="window.location.href='mailto:info@selectrealitydev.com?subject=Project Inquiry'">
+                <i class="fas fa-envelope"></i>
+                Start Your Project Today
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Select Reality Development</h4>
+                    <p>Transformative AR/VR/metaverse solutions through strategic research, design, and product management.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@selectrealitydev.com">info@selectrealitydev.com</a></li>
+                        <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/selectreality/" target="_blank">linkedin.com/company/selectreality</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> HQ: Washington, DC</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright 2025 Select Reality Development LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
